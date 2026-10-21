@@ -1,0 +1,42 @@
+{
+  "name": "LexiMind Engine • Legal Study Intelligence",
+  "short_name": "LexiMind",
+  "description": "Mobile legal study intelligence for Kenyan Law (LL.B) and Islamic Jurisprudence at Umma University.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0F172A",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity", "books"],
+  "shortcuts": [
+    {
+      "name": "IRAC Solver",
+      "url": "/#irac",
+      "description": "Solve Kenyan Law problem scenarios"
+    },
+    {
+      "name": "Case Law Vault",
+      "url": "/#vault",
+      "description": "Access landmark precedents"
+    },
+    {
+      "name": "Statutory Compendium",
+      "url": "/#statutes",
+      "description": "Search Kenyan Acts & Sharia"
+    }
+  ]
+}

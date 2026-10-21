@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="50%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="indigoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded App Icon Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <rect x="8" y="8" width="496" height="496" rx="104" fill="none" stroke="#6366F1" stroke-width="3" stroke-opacity="0.3"/>
+  
+  <!-- Central Scales of Justice Emblem -->
+  <!-- Base Pedestal -->
+  <path d="M192 420 H320 V436 H192 Z" fill="url(#goldGrad)" rx="4"/>
+  <path d="M216 404 H296 V420 H216 Z" fill="url(#goldGrad)" rx="2"/>
+  
+  <!-- Central Column -->
+  <rect x="250" y="140" width="12" height="264" rx="6" fill="url(#goldGrad)"/>
+  
+  <!-- Finial Top -->
+  <circle cx="256" cy="120" r="18" fill="url(#goldGrad)"/>
+  
+  <!-- Balance Beam -->
+  <path d="M110 180 C180 170 332 170 402 180" stroke="url(#goldGrad)" stroke-width="10" stroke-linecap="round" fill="none"/>
+  
+  <!-- Left Pan Chains & Pan -->
+  <line x1="120" y1="184" x2="80" y2="280" stroke="#CBD5E1" stroke-width="3"/>
+  <line x1="120" y1="184" x2="160" y2="280" stroke="#CBD5E1" stroke-width="3"/>
+  <path d="M70 280 Q120 330 170 280 Z" fill="url(#indigoGrad)"/>
+  
+  <!-- Right Pan Chains & Pan -->
+  <line x1="392" y1="184" x2="352" y2="280" stroke="#CBD5E1" stroke-width="3"/>
+  <line x1="392" y1="184" x2="432" y2="280" stroke="#CBD5E1" stroke-width="3"/>
+  <path d="M342 280 Q392 330 442 280 Z" fill="url(#indigoGrad)"/>
+
+  <!-- Subtle Emblem Star / Seal -->
+  <polygon points="256,76 261,90 276,90 264,99 268,114 256,104 244,114 248,99 236,90 251,90" fill="#FCD34D"/>
+</svg>

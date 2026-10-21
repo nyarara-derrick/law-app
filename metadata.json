@@ -1,0 +1,11 @@
+{
+  "name": "Remix LexiMind Engine",
+  "description": "Mobile legal study intelligence for Kenyan Law (LL.B) and Islamic Jurisprudence at Umma University, featuring IRAC Exam Solver, Case Law Vault, and Note Synthesizer.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
