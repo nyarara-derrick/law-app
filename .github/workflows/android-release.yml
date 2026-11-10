@@ -1,3 +1,4 @@
+
 name: Android Release APK
 
 on:
@@ -21,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install web dependencies
@@ -45,7 +46,7 @@ jobs:
       - name: Install Android SDK packages
         shell: bash
         run: |
-          echo "y" | sdkmanager --licenses >/dev/null || true
+          yes | sdkmanager --licenses >/dev/null || true
           sdkmanager --install "cmdline-tools;latest" "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Sync Capacitor Android project
@@ -62,8 +63,9 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: LexiMind-android-release.apk
+          name: LexiMind-android-release
           path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          if-no-files-found: error
 
       - name: Create GitHub Release and upload APK
         if: startsWith(github.ref, 'refs/tags/')
