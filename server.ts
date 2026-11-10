@@ -1,21 +1,17 @@
-import express from "express";
+import express, { type Request, type Response } from "express";
 import path from "path";
-import { fileURLToPath } from "url";
 import { GoogleGenAI, Type } from "@google/genai";
 import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const app = express();
 const PORT = 3000;
 
 app.use(express.json({ limit: "30mb" }));
 
-// Server-side Gemini AI initialization
+// Server-side Gemini AI initialization``
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
   httpOptions: {
@@ -107,7 +103,7 @@ TONE & STYLE:
 - Always accurately cite Kenyan statutes (with Act name and section number) and landmark case law citations with party names and year.`;
 
 // Endpoint 0: OCR and Multimodal Extraction from Photo or PDF
-app.post("/api/irac/extract-text", async (req, res) => {
+app.post("/api/irac/extract-text", async (req: Request, res: Response) => {
   try {
     const { attachment } = req.body;
     if (!attachment || !attachment.data) {
@@ -143,7 +139,7 @@ Format your output cleanly as readable legal text with all sub-questions preserv
 });
 
 // Endpoint 1: IRAC Problem Question Solver (Supports Text, Photo & PDF)
-app.post("/api/irac/solve", async (req, res) => {
+app.post("/api/irac/solve", async (req: Request, res: Response) => {
   try {
     const { scenario, subject, customInstructions, attachment } = req.body;
     if (!scenario && (!attachment || !attachment.data)) {
@@ -214,7 +210,7 @@ Format your response strictly using this mobile-optimized IRAC structure:
 });
 
 // Endpoint 2: IRAC Student Answer Grader / Assessor
-app.post("/api/irac/grade", async (req, res) => {
+app.post("/api/irac/grade", async (req: Request, res: Response) => {
   try {
     const { scenario, studentAnswer, subject } = req.body;
     if (!scenario || !studentAnswer) {
@@ -301,7 +297,7 @@ Return a JSON object matching this schema:
 });
 
 // Endpoint 3: Case Law Vault Breakdown
-app.post("/api/case/brief", async (req, res) => {
+app.post("/api/case/brief", async (req: Request, res: Response) => {
   try {
     const { caseName, subject, jurisdictionFocus, query } = req.body;
     if (!caseName && !query) {
@@ -357,7 +353,7 @@ Provide accurate case facts, court & year, citation, central issue, ratio decide
 });
 
 // Endpoint 4: Note Synthesizer & Active Recall Revision Generator
-app.post("/api/synthesizer/generate", async (req, res) => {
+app.post("/api/synthesizer/generate", async (req: Request, res: Response) => {
   try {
     const { rawNotes, subject, topic, targetWordCount, attachment } = req.body;
     if (!rawNotes && !topic && (!attachment || !attachment.data)) {
@@ -549,7 +545,7 @@ INSTRUCTIONS FOR SYNTHESIS:
 });
 
 // Endpoint 4B: Regenerate / Fresh Quiz from Synthesized Notes
-app.post("/api/synthesizer/generate-quiz", async (req, res) => {
+app.post("/api/synthesizer/generate-quiz", async (req: Request, res: Response) => {
   try {
     const { title, subject, notesContent, numQuestions = 5 } = req.body;
     if (!notesContent && !title) {
@@ -618,7 +614,7 @@ Return JSON with this schema:
 });
 
 // Endpoint 5: Deep Legal Statutory & Sharia Compendium AI Lookup
-app.post("/api/statute/lookup", async (req, res) => {
+app.post("/api/statute/lookup", async (req: Request, res: Response) => {
   try {
     const { query, statute, compendiumType } = req.body;
     if (!query) {
@@ -713,7 +709,7 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", (req, res) => {
+    app.get("*", (req: Request, res: Response) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
