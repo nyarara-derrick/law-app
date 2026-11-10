@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">LexiMind</string>
+    <string name="title_activity_main">LexiMind</string>
+    <string name="package_name">com.leximind.app</string>
+    <string name="custom_url_scheme">com.leximind.app</string>
+</resources>
