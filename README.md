@@ -24,7 +24,7 @@ Some modules use preloaded learning material, while AI-powered actions call the 
 
 - **Frontend:** React 19, TypeScript, Vite
 - **Styling:** Tailwind CSS
-- **Backend:** Node.js, Express
+- **Backend:** Node.js, Express (production server bundle is kept outside the public frontend directory)
 - **AI:** Google Gemini through the `@google/genai` SDK
 - **Mobile packaging:** Capacitor 8 and Android
 - **Build automation:** GitHub Actions
@@ -96,15 +96,15 @@ Never commit your real `.env` file or expose the Gemini API key in frontend code
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the Express server with Vite middleware for development. |
-| `npm run build` | Build the web frontend and bundle the Express server. |
-| `npm start` | Start the bundled Express server. |
+| `npm run build` | Build the web frontend into `dist/` and the Express server into the private `build/` directory. |
+| `npm start` | Start the bundled Express server from `build/server.cjs`. |
 | `npm run preview` | Run Vite's preview server for the built frontend. |
 | `npm run lint` | Run the TypeScript compiler without emitting files. |
-| `npm run clean` | Remove generated build output listed in the script. |
+| `npm run clean` | Remove generated `dist/` and `build/` output. |
 
 ## Backend API
 
-The current Express server defines these AI endpoints:
+The Express server exposes `GET /api/health` as a lightweight liveness check and defines these AI endpoints:
 
 | Method | Endpoint | Purpose |
 | --- | --- | --- |
@@ -144,7 +144,7 @@ A release APK still needs installation and real-device testing. AI functionality
 
 The project is not yet an enterprise-ready production service. Before public release, the following areas need implementation and verification:
 
-- Cloud deployment of the Express API and a secure way for the Android app to reach it over HTTPS.
+- Cloud deployment of the Express API and a secure way for the Android app to reach it over HTTPS. The server now reads its listening port from `PORT` (falling back to `3000`) and keeps its bundled code outside the publicly served `dist/` directory.
 - Centralized frontend API configuration for web and Android builds.
 - Backend security: request validation, rate limiting, abuse prevention, safe error responses, CORS policy, and secret management.
 - Authentication, authorization, user accounts, and secure session/token handling if multi-user accounts are introduced.
