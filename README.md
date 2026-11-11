@@ -144,7 +144,7 @@ A release APK still needs installation and real-device testing. AI functionality
 
 The project is not yet an enterprise-ready production service. Before public release, the following areas need implementation and verification:
 
-- Cloud deployment of the Express API and a secure way for the Android app to reach it over HTTPS. The server now reads its listening port from `PORT` (falling back to `3000`) and keeps its bundled code outside the publicly served `dist/` directory.
+- Cloud deployment of the Express API and setting `VITE_API_BASE_URL` to its HTTPS origin for Android builds. Configure `CORS_ALLOWED_ORIGINS` for any separately hosted web frontend. The server now reads its listening port from `PORT` (falling back to `3000`) and keeps its bundled code outside the publicly served `dist/` directory.
 - Centralized frontend API configuration for web and Android builds.
 - Backend security: request validation, rate limiting, abuse prevention, safe error responses, CORS policy, and secret management.
 - Authentication, authorization, user accounts, and secure session/token handling if multi-user accounts are introduced.
