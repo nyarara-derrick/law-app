@@ -1,3 +1,4 @@
+import { apiFetch } from "../utils/api";
 import React, { useState, useEffect, useMemo } from "react";
 import {
   BookOpen,
@@ -172,7 +173,7 @@ export const CaseVaultView = ({
     setErrorMessage(null);
 
     try {
-      const response = await fetch("/api/case/brief", {
+      const response = await apiFetch("/api/case/brief", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

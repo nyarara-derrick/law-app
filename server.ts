@@ -9,6 +9,38 @@ dotenv.config();
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
+// Allow the installed Capacitor app and explicitly configured web origins.
+const configuredOrigins = (process.env.CORS_ALLOWED_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+const allowedOrigins = new Set([
+  "capacitor://localhost",
+  "https://localhost",
+  ...configuredOrigins,
+]);
+
+app.use((req: Request, res: Response, next) => {
+  const origin = req.headers.origin;
+  const isLocalDevelopmentOrigin =
+    process.env.NODE_ENV !== "production" &&
+    typeof origin === "string" &&
+    /^http:\/\/localhost(:\d+)?$/.test(origin);
+
+  if (origin && (allowedOrigins.has(origin) || isLocalDevelopmentOrigin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  }
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  next();
+});
+
 app.use(express.json({ limit: "30mb" }));
 
 // Lightweight liveness endpoint for hosting-provider health checks.

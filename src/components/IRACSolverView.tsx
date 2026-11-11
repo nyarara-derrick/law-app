@@ -1,3 +1,4 @@
+import { apiFetch } from "../utils/api";
 import React, { useState, useEffect, useRef } from "react";
 import {
   Scale,
@@ -208,7 +209,7 @@ export const IRACSolverView = ({
     setErrorMessage(null);
 
     try {
-      const response = await fetch("/api/irac/extract-text", {
+      const response = await apiFetch("/api/irac/extract-text", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ attachment }),
@@ -305,7 +306,7 @@ export const IRACSolverView = ({
     setSavedSuccess(false);
 
     try {
-      const response = await fetch("/api/irac/solve", {
+      const response = await apiFetch("/api/irac/solve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -372,7 +373,7 @@ export const IRACSolverView = ({
     setErrorMessage(null);
 
     try {
-      const response = await fetch("/api/irac/grade", {
+      const response = await apiFetch("/api/irac/grade", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
