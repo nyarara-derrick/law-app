@@ -1,3 +1,4 @@
+import { apiFetch } from "../utils/api";
 import React, { useState, useEffect, useRef } from "react";
 import {
   FileText,
@@ -292,7 +293,7 @@ export const NoteSynthesizerView = ({
     setReadingStage("reading");
 
     try {
-      const response = await fetch("/api/synthesizer/generate", {
+      const response = await apiFetch("/api/synthesizer/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -389,7 +390,7 @@ export const NoteSynthesizerView = ({
     if (!synthesis) return;
     setIsRegeneratingQuiz(true);
     try {
-      const res = await fetch("/api/synthesizer/generate-quiz", {
+      const res = await apiFetch("/api/synthesizer/generate-quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
