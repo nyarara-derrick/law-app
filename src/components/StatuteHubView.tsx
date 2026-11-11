@@ -1,3 +1,4 @@
+import { apiFetch } from "../utils/api";
 import React, { useState, useEffect } from "react";
 import {
   Search,
@@ -86,7 +87,7 @@ export const StatuteHubView = ({
     setAiLookupResult(null);
 
     try {
-      const response = await fetch("/api/statute/lookup", {
+      const response = await apiFetch("/api/statute/lookup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
